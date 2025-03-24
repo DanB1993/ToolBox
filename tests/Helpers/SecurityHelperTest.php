@@ -35,4 +35,14 @@ class SecurityHelperTest extends TestCase
         $this->assertTrue(SecurityHelper::verifyPassword($password, $hash));
         $this->assertFalse(SecurityHelper::verifyPassword('WrongPassword', $hash));
     }
+
+    /** @test */
+    public function hashes_password_correctly()
+    {
+        $password = 'SecurePassword123!';
+        $hash = SecurityHelper::hashPassword($password);
+
+        $this->assertIsString($hash);
+        $this->assertTrue(password_verify($password, $hash));
+    }
 }

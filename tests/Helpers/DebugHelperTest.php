@@ -34,4 +34,23 @@ class DebugHelperTest extends TestCase
         $this->assertIsFloat($executionTime);
         $this->assertGreaterThanOrEqual(100, $executionTime);
     }
+
+    /** @test */
+    public function logs_message_to_file()
+    {
+        $logFile = sys_get_temp_dir() . '/test_toolbox.log';
+
+        if (file_exists($logFile)) {
+            unlink($logFile);
+        }
+
+        DebugHelper::logToFile('Test log entry', $logFile);
+
+        $this->assertFileExists($logFile);
+
+        $logContent = file_get_contents($logFile);
+        $this->assertStringContainsString('Test log entry', $logContent);
+
+        unlink($logFile);
+    }
 }

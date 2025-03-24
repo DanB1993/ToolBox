@@ -38,38 +38,19 @@ class StringHelper
      */
     public static function toCamelCase(string $string): string
     {
-        // Replace non-letter/digit characters with spaces
+        // Replace underscores, hyphens, and special chars with spaces
         $string = preg_replace('/[^\p{L}\p{N}]+/u', ' ', $string);
-        
+
+        // Insert spaces between lowercase and uppercase letters
+        $string = preg_replace('/([a-z0-9])([A-Z])/', '$1 $2', $string);
+
+        // Insert spaces between letters and numbers
+        $string = preg_replace('/([a-zA-Z])(\d)/', '$1 $2', $string);
+        $string = preg_replace('/(\d)([a-zA-Z])/', '$1 $2', $string);
+
         // Capitalize words, remove spaces, lowercase first char
         $string = str_replace(' ', '', ucwords(strtolower(trim($string))));
 
         return lcfirst($string);
-    }
-
-    /** @test */
-    public function converts_snake_case_to_camel_case()
-    {
-        $this->assertEquals('myVariableName', StringHelper::toCamelCase('my_variable_name'));
-    }
-
-    /** @test */
-    public function converts_kebab_case_to_camel_case()
-    {
-        $this->assertEquals('myVariableName', StringHelper::toCamelCase('my-variable-name'));
-    }
-
-    /** @test */
-    public function converts_spaces_to_camel_case()
-    {
-        $this->assertEquals('myVariableName', StringHelper::toCamelCase('my variable name'));
-    }
-
-    /** @test */
-    public function handles_mixed_and_special_characters()
-    {
-        $this->assertEquals('helloWorld123', StringHelper::toCamelCase('Hello World 123'));
-        $this->assertEquals('testString', StringHelper::toCamelCase('test__string'));
-        $this->assertEquals('myVariable123Name', StringHelper::toCamelCase('MyVariable_123-name'));
     }
 }

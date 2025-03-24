@@ -23,4 +23,15 @@ class DebugHelperTest extends TestCase
 
         $this->assertMatchesRegularExpression('/^\d+(\.\d{2})?\s(B|KB|MB|GB|TB|PB)$/', $usage);
     }
+
+    /** @test */
+    public function measures_callable_execution_time()
+    {
+        $executionTime = DebugHelper::executionTime(function () {
+            usleep(100000); // 100 milliseconds
+        });
+
+        $this->assertIsFloat($executionTime);
+        $this->assertGreaterThanOrEqual(100, $executionTime);
+    }
 }

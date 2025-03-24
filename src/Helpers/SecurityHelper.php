@@ -14,4 +14,16 @@ class SecurityHelper
     {
         return bin2hex(random_bytes($length / 2));
     }
+
+    /**
+     * Verify a password against a given hash.
+     *
+     * @param string $password
+     * @param string $hash
+     * @return bool
+     */
+    public static function verifyPassword(string $password, string $hash): bool
+    {
+        return password_verify($password, $hash);
+    }
 }

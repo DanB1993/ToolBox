@@ -1,9 +1,3 @@
-Here’s a clean, detailed, and ready-to-use README.md file clearly explaining your Composer package:
-
-⸻
-
-
-
 # 🧰 DanBaker ToolBox (PHP Composer Package)
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
@@ -48,8 +42,3 @@ This package is open-source and available under the MIT License.
 ⸻
 
 ❤️ Built with care by Dan Baker
-
----
-
-This README.md clearly presents what your package is, how to use it, and how to engage further.  
-Let me know if you need any additional tweaks or further sections!

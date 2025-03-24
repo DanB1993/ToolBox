@@ -37,4 +37,27 @@ class SecurityHelper
     {
         return password_hash($password, PASSWORD_DEFAULT);
     }
+
+    /**
+     * Escape HTML entities securely to prevent XSS attacks.
+     *
+     * @param string $input
+     * @return string
+     */
+    public static function escapeHtml(string $input): string
+    {
+        return htmlspecialchars($input, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+    }
+
+    /**
+     * Sanitize a string input by removing potentially malicious content.
+     *
+     * @param string $input
+     * @return string
+     */
+    public static function sanitizeInput(string $input): string
+    {
+        // Remove HTML tags and encode special characters
+        return filter_var(strip_tags($input), FILTER_SANITIZE_SPECIAL_CHARS);
+    }
 }

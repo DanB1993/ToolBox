@@ -45,4 +45,22 @@ class SecurityHelperTest extends TestCase
         $this->assertIsString($hash);
         $this->assertTrue(password_verify($password, $hash));
     }
+
+    /** @test */
+    public function escapes_html_correctly()
+    {
+        $rawInput = '<script>alert("XSS")</script>';
+        $escaped = SecurityHelper::escapeHtml($rawInput);
+
+        $this->assertEquals('&lt;script&gt;alert(&quot;XSS&quot;)&lt;/script&gt;', $escaped);
+    }
+
+   /** @test */
+    public function sanitizes_input_correctly()
+    {
+        $rawInput = '<script>alert("Attack!")</script><b>Hello</b>';
+        $sanitized = SecurityHelper::sanitizeInput($rawInput);
+
+        $this->assertEquals('alert(&#34;Attack!&#34;)Hello', $sanitized);
+    }
 }

@@ -24,4 +24,14 @@ class NumberHelperTest extends TestCase
         $this->assertEquals(66.667, NumberHelper::percentage(2, 3, 3));
         $this->assertEquals(0.0, NumberHelper::percentage(50, 0)); // handle division by zero
     }
+
+    /** @test */
+    public function converts_bytes_to_human_readable_format()
+    {
+        $this->assertEquals('512 B', NumberHelper::bytesToHumanReadable(512));
+        $this->assertEquals('1.00 KB', NumberHelper::bytesToHumanReadable(1024));
+        $this->assertEquals('1.50 MB', NumberHelper::bytesToHumanReadable(1572864));
+        $this->assertEquals('1.00 GB', NumberHelper::bytesToHumanReadable(1073741824));
+        $this->assertEquals('1.23 TB', NumberHelper::bytesToHumanReadable(1352399302164));
+    }
 }

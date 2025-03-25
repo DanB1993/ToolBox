@@ -63,4 +63,15 @@ class SecurityHelperTest extends TestCase
 
         $this->assertEquals('alert(&#34;Attack!&#34;)Hello', $sanitized);
     }
+
+    /** @test */
+    public function validates_uuid_correctly()
+    {
+        $this->assertTrue(SecurityHelper::isUuid('3f29c4f6-8a13-4fbd-a27d-2d59b7e4c219')); // valid v4
+        $this->assertTrue(SecurityHelper::isUuid('550e8400-e29b-11d4-a716-446655440000')); // valid v1
+
+        $this->assertFalse(SecurityHelper::isUuid('not-a-uuid'));
+        $this->assertFalse(SecurityHelper::isUuid('12345678-1234-1234-1234-123456789'));   // too short
+        $this->assertFalse(SecurityHelper::isUuid('g2345678-1234-1234-1234-123456789abc')); // invalid char
+    }
 }

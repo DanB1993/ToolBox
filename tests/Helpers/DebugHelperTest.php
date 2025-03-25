@@ -10,7 +10,7 @@ class DebugHelperTest extends TestCase
     /** @test */
     public function returns_memory_usage_as_integer()
     {
-        $usage = DebugHelper::memoryUsage(false);
+        $usage = DebugHelper::getMemoryUsage(false);
 
         $this->assertIsInt($usage);
         $this->assertGreaterThan(0, $usage);
@@ -19,7 +19,24 @@ class DebugHelperTest extends TestCase
     /** @test */
     public function returns_formatted_memory_usage_string()
     {
-        $usage = DebugHelper::memoryUsage(true);
+        $usage = DebugHelper::getMemoryUsage(true);
+
+        $this->assertMatchesRegularExpression('/^\d+(\.\d{2})?\s(B|KB|MB|GB|TB|PB)$/', $usage);
+    }
+
+    /** @test */
+    public function returns_actual_memory_usage_as_integer()
+    {
+        $usage = DebugHelper::getMemoryUsage(false, false);
+
+        $this->assertIsInt($usage);
+        $this->assertGreaterThan(0, $usage);
+    }
+
+    /** @test */
+    public function returns_actual_formatted_memory_usage_string()
+    {
+        $usage = DebugHelper::getMemoryUsage(true, false);
 
         $this->assertMatchesRegularExpression('/^\d+(\.\d{2})?\s(B|KB|MB|GB|TB|PB)$/', $usage);
     }

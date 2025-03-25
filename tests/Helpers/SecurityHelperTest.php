@@ -74,4 +74,19 @@ class SecurityHelperTest extends TestCase
         $this->assertFalse(SecurityHelper::isUuid('12345678-1234-1234-1234-123456789'));   // too short
         $this->assertFalse(SecurityHelper::isUuid('g2345678-1234-1234-1234-123456789abc')); // invalid char
     }
+
+    /** @test */
+    public function validates_ip_address_correctly()
+    {
+        // Valid IPv4
+        $this->assertTrue(SecurityHelper::isIpAddress('192.168.1.1'));
+
+        // Valid IPv6
+        $this->assertTrue(SecurityHelper::isIpAddress('2001:0db8:85a3:0000:0000:8a2e:0370:7334'));
+
+        // Invalid
+        $this->assertFalse(SecurityHelper::isIpAddress('999.999.999.999'));
+        $this->assertFalse(SecurityHelper::isIpAddress('not-an-ip'));
+        $this->assertFalse(SecurityHelper::isIpAddress('1234:5678:90ab:cdef:ghij:klmn:opqr:stuv'));
+    }
 }

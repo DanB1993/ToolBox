@@ -58,4 +58,14 @@ class StringHelperTest extends TestCase
         $this->assertEquals('testString', StringHelper::toCamelCase('test__string'));
         $this->assertEquals('myVariable123Name', StringHelper::toCamelCase('MyVariable_123-name'));
     }
+
+    /** @test */
+    public function converts_strings_to_kebab_case()
+    {
+        $this->assertEquals('my-variable-name', StringHelper::toKebabCase('MyVariableName'));
+        $this->assertEquals('hello-world', StringHelper::toKebabCase('helloWorld'));
+        $this->assertEquals('hello-world-123', StringHelper::toKebabCase('Hello World 123'));
+        $this->assertEquals('test-string', StringHelper::toKebabCase('test__string'));
+        $this->assertEquals('my-variable-123-name', StringHelper::toKebabCase('MyVariable_123-name'));
+    }
 }

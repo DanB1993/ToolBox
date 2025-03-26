@@ -20,7 +20,7 @@ composer require danbaker/toolbox
 
 Detailed usage examples and documentation for each helper can be found in the project’s Wiki:
 
-👉 [View the Wiki Documentation](https://github.com/danBaker/ToolBox/wiki)
+👉 [View the Wiki Documentation](https://github.com/DanB1993/ToolBox/wiki)
 
 Each utility and helper method is individually documented with clear usage examples, explanations, and version histories.
 
@@ -30,7 +30,7 @@ Each utility and helper method is individually documented with clear usage examp
 
 If you’ve found a bug or have a feature request, please create an issue clearly describing your request:
 
-👉 [Create an Issue](https://github.com/danBaker/ToolBox/issues)
+👉 [Create an Issue](https://github.com/DanB1993/ToolBox/issues)
 
 We appreciate your contributions to improving the ToolBox!
 
@@ -42,4 +42,4 @@ This package is open-source and available under the MIT License.
 
 ⸻
 
-❤️ Built with care by [Dan Baker](https://github.com/danBaker)
+❤️ Built with care by [Dan Baker](https://github.com/DanB1993)

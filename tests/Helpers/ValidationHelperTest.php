@@ -19,4 +19,17 @@ class ValidationHelperTest extends TestCase
         $this->assertFalse(ValidationHelper::isAlphaNumeric('!@#$%^'));
         $this->assertFalse(ValidationHelper::isAlphaNumeric(''));
     }
+
+    /** @test */
+    public function correctly_validates_json_strings()
+    {
+        $this->assertTrue(ValidationHelper::isJson('{"name":"Dan"}'));
+        $this->assertTrue(ValidationHelper::isJson('[1, 2, 3]'));
+        $this->assertTrue(ValidationHelper::isJson('true'));
+        $this->assertTrue(ValidationHelper::isJson('null'));
+
+        $this->assertFalse(ValidationHelper::isJson(''));
+        $this->assertFalse(ValidationHelper::isJson('{name:Dan}'));
+        $this->assertFalse(ValidationHelper::isJson('Just a normal string'));
+    }
 }

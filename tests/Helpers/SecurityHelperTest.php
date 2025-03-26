@@ -63,4 +63,30 @@ class SecurityHelperTest extends TestCase
 
         $this->assertEquals('alert(&#34;Attack!&#34;)Hello', $sanitized);
     }
+
+    /** @test */
+    public function validates_uuid_correctly()
+    {
+        $this->assertTrue(SecurityHelper::isUuid('3f29c4f6-8a13-4fbd-a27d-2d59b7e4c219')); // valid v4
+        $this->assertTrue(SecurityHelper::isUuid('550e8400-e29b-11d4-a716-446655440000')); // valid v1
+
+        $this->assertFalse(SecurityHelper::isUuid('not-a-uuid'));
+        $this->assertFalse(SecurityHelper::isUuid('12345678-1234-1234-1234-123456789'));   // too short
+        $this->assertFalse(SecurityHelper::isUuid('g2345678-1234-1234-1234-123456789abc')); // invalid char
+    }
+
+    /** @test */
+    public function validates_ip_address_correctly()
+    {
+        // Valid IPv4
+        $this->assertTrue(SecurityHelper::isIpAddress('192.168.1.1'));
+
+        // Valid IPv6
+        $this->assertTrue(SecurityHelper::isIpAddress('2001:0db8:85a3:0000:0000:8a2e:0370:7334'));
+
+        // Invalid
+        $this->assertFalse(SecurityHelper::isIpAddress('999.999.999.999'));
+        $this->assertFalse(SecurityHelper::isIpAddress('not-an-ip'));
+        $this->assertFalse(SecurityHelper::isIpAddress('1234:5678:90ab:cdef:ghij:klmn:opqr:stuv'));
+    }
 }

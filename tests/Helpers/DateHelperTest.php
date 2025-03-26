@@ -56,4 +56,12 @@ class DateHelperTest extends TestCase
         $next = DateHelper::nextWeekday('2025-03-21');
         $this->assertEquals('2025-03-24', $next->format('Y-m-d'));
     }
+
+    /** @test */
+    public function correctly_identifies_weekends()
+    {
+        $this->assertTrue(DateHelper::isWeekend('2025-03-22')); // Saturday
+        $this->assertTrue(DateHelper::isWeekend('2025-03-23')); // Sunday
+        $this->assertFalse(DateHelper::isWeekend('2025-03-24')); // Monday
+    }
 }

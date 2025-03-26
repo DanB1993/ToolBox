@@ -18,4 +18,28 @@ class EnvironmentHelperTest extends TestCase
 
         putenv('APP_ENV'); // reset
     }
+    
+    /** @test */
+    public function detects_development_environment_correctly()
+    {
+        putenv('APP_ENV=development');
+        $this->assertTrue(EnvironmentHelper::isDevelopment());
+
+        putenv('APP_ENV=production');
+        $this->assertFalse(EnvironmentHelper::isDevelopment());
+
+        putenv('APP_ENV'); // reset
+    }
+
+    /** @test */
+    public function detects_production_environment_correctly()
+    {
+        putenv('APP_ENV=production');
+        $this->assertTrue(EnvironmentHelper::isProduction());
+
+        putenv('APP_ENV=development');
+        $this->assertFalse(EnvironmentHelper::isProduction());
+
+        putenv('APP_ENV'); // reset
+    }
 }

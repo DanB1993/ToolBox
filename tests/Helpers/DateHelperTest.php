@@ -64,4 +64,27 @@ class DateHelperTest extends TestCase
         $this->assertTrue(DateHelper::isWeekend('2025-03-23')); // Sunday
         $this->assertFalse(DateHelper::isWeekend('2025-03-24')); // Monday
     }
+
+    /** @test */
+    public function returns_human_readable_difference_between_dates()
+    {
+        $now = new \DateTimeImmutable('2025-03-25 12:00:00');
+
+        $this->assertEquals('2 days ago', DateHelper::humanReadableDiff('2025-03-23 12:00:00', $now));
+        $this->assertEquals('in 3 hours', DateHelper::humanReadableDiff('2025-03-25 15:00:00', $now));
+        $this->assertEquals('just now', DateHelper::humanReadableDiff($now, $now));
+    }
+
+    /** @test */
+    public function validates_date_strings_and_objects_correctly()
+    {
+        $this->assertTrue(DateHelper::isDate('2025-04-01'));
+        $this->assertTrue(DateHelper::isDate(new \DateTimeImmutable()));
+        $this->assertTrue(DateHelper::isDate('March 10, 2025 5:00 PM'));
+
+        $this->assertFalse(DateHelper::isDate('not-a-date'));
+        $this->assertFalse(DateHelper::isDate(''));
+        $this->assertFalse(DateHelper::isDate(null));
+        $this->assertFalse(DateHelper::isDate(12345));
+    }
 }

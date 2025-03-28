@@ -68,4 +68,13 @@ class StringHelperTest extends TestCase
         $this->assertEquals('test-string', StringHelper::toKebabCase('test__string'));
         $this->assertEquals('my-variable-123-name', StringHelper::toKebabCase('MyVariable_123-name'));
     }
+
+    /** @test */
+    public function truncates_strings_properly()
+    {
+        $this->assertEquals('Hello...', StringHelper::truncate('Hello World', 8));
+        $this->assertEquals('Hello World', StringHelper::truncate('Hello World', 20));
+        $this->assertEquals('DanB...', StringHelper::truncate('DanBakerToolBox', 7));
+        $this->assertEquals('Dan!', StringHelper::truncate('DanBaker', 4, '!'));
+    }
 }

@@ -20,7 +20,7 @@ class DebugHelper
     }
 
     /**
-     * Format bytes to human-readable string.
+     * Format bytes to a human-readable string.
      *
      * @param int $bytes
      * @return string
@@ -32,7 +32,7 @@ class DebugHelper
         }
 
         $units = ['B', 'KB', 'MB', 'GB', 'TB', 'PB'];
-        $factor = (int) floor(log($bytes, 1024));
+        $factor = min((int) floor(log($bytes, 1024)), count($units) - 1);
 
         return sprintf('%.2f %s', $bytes / (1024 ** $factor), $units[$factor]);
     }

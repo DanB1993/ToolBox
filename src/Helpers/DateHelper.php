@@ -8,9 +8,7 @@
  *
  * @package     DanBaker\ToolBox
  * @author      Dan Baker
- * @copyright   Copyright (c) 2024 Dan Baker
  * @license     MIT License
- * @version     0.5.0
  * @link        https://github.com/danBaker/ToolBox
  */
 

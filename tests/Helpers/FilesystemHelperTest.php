@@ -29,4 +29,37 @@ class FilesystemHelperTest extends TestCase
         $this->assertEquals('C:/dev/project', FilesystemHelper::normalizePath('C:\\dev\\project\\.\\'));
         $this->assertEquals('relative/path', FilesystemHelper::normalizePath('./relative/path'));
     }
+
+    /** @test */
+    public function lists_files_in_directory_correctly()
+    {
+        $root = __DIR__ . '/temp_files';
+        $sub = $root . '/nested';
+
+        mkdir($root, 0777, true);
+        mkdir($sub, 0777, true);
+        file_put_contents("$root/a.txt", 'A');
+        file_put_contents("$root/b.log", 'B');
+        file_put_contents("$sub/c.txt", 'C');
+
+        // Non-recursive
+        $filesFlat = FilesystemHelper::listFiles($root);
+        $this->assertIsArray($filesFlat);
+        $this->assertCount(2, $filesFlat);
+        $this->assertContains("$root/a.txt", $filesFlat);
+        $this->assertContains("$root/b.log", $filesFlat);
+
+        // Recursive
+        $filesAll = FilesystemHelper::listFiles($root, true);
+        $this->assertIsArray($filesAll);
+        $this->assertCount(3, $filesAll);
+        $this->assertContains("$sub/c.txt", $filesAll);
+
+        // Cleanup after all assertions
+        unlink("$root/a.txt");
+        unlink("$root/b.log");
+        unlink("$sub/c.txt");
+        rmdir($sub);
+        rmdir($root);
+    }
 }

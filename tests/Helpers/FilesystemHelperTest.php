@@ -62,4 +62,24 @@ class FilesystemHelperTest extends TestCase
         rmdir($sub);
         rmdir($root);
     }
+
+    /** @test */
+    public function deletes_directory_and_contents()
+    {
+        $root = __DIR__ . '/delete_me';
+        $nested = "$root/nested";
+
+        mkdir($nested, 0777, true);
+        file_put_contents("$root/file1.txt", 'file1');
+        file_put_contents("$nested/file2.txt", 'file2');
+
+        $this->assertDirectoryExists($root);
+        $this->assertFileExists("$root/file1.txt");
+        $this->assertFileExists("$nested/file2.txt");
+
+        $deleted = FilesystemHelper::deleteDirectory($root);
+
+        $this->assertTrue($deleted);
+        $this->assertDirectoryDoesNotExist($root);
+    }
 }

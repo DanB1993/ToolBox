@@ -1,8 +1,8 @@
 <?php
 
-namespace DanBaker\ToolBox\Helpers\Debug;
+namespace DanBaker\ToolBox\Traits\Debug;
 
-trait GetMemoryUsageTrait
+trait GetMemoryUsage
 {
     /**
      * Get current memory usage.

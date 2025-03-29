@@ -1,8 +1,8 @@
 <?php
 
-namespace DanBaker\ToolBox\Helpers\FileSystem;
+namespace DanBaker\ToolBox\Traits\FileSystem;
 
-trait DeleteDirectoryTrait
+trait DeleteDirectory
 {
     /**
      * Recursively delete a directory and all its contents.

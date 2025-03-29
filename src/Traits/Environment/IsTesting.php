@@ -1,8 +1,8 @@
 <?php
 
-namespace DanBaker\ToolBox\Helpers\Environment;
+namespace DanBaker\ToolBox\Traits\Environment;
 
-trait IsTestingTrait
+trait IsTesting
 {
     /**
      * Check if the current environment is 'testing'.

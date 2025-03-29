@@ -14,17 +14,17 @@
 
 namespace DanBaker\ToolBox\Helpers;
 
-use DanBaker\ToolBox\Helpers\Debug\DdTrait;
-use DanBaker\ToolBox\Helpers\Debug\ExecutionTimeTrait;
-use DanBaker\ToolBox\Helpers\Debug\FormatBytesTrait;
-use DanBaker\ToolBox\Helpers\Debug\GetMemoryUsageTrait;
-use DanBaker\ToolBox\Helpers\Debug\LogToFileTrait;
+use DanBaker\ToolBox\Traits\Debug\Dd;
+use DanBaker\ToolBox\Traits\Debug\ExecutionTime;
+use DanBaker\ToolBox\Traits\Debug\FormatBytes;
+use DanBaker\ToolBox\Traits\Debug\GetMemoryUsage;
+use DanBaker\ToolBox\Traits\Debug\LogToFile;
 
 class DebugHelper
 {
-    use DdTrait;
-    use ExecutionTimeTrait;
-    use FormatBytesTrait;
-    use GetMemoryUsageTrait;
-    use LogToFileTrait;
+    use Dd;
+    use ExecutionTime;
+    use FormatBytes;
+    use GetMemoryUsage;
+    use LogToFile;
 }

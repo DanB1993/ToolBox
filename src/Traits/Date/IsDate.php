@@ -1,8 +1,8 @@
 <?php
 
-namespace DanBaker\ToolBox\Helpers\Date;
+namespace DanBaker\ToolBox\Traits\Date;
 
-trait IsDateTrait
+trait IsDate
 {
     /**
      * Check if a value is a valid date or DateTime object.

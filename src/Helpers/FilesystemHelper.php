@@ -14,15 +14,15 @@
 
 namespace DanBaker\ToolBox\Helpers;
 
-use DanBaker\ToolBox\Helpers\FileSystem\DeleteDirectoryTrait;
-use DanBaker\ToolBox\Helpers\FileSystem\IsAbsolutePathTrait;
-use DanBaker\ToolBox\Helpers\FileSystem\ListFilesTrait;
-use DanBaker\ToolBox\Helpers\FileSystem\NormalizePathTrait;
+use DanBaker\ToolBox\Traits\FileSystem\DeleteDirectory;
+use DanBaker\ToolBox\Traits\FileSystem\IsAbsolutePath;
+use DanBaker\ToolBox\Traits\FileSystem\ListFiles;
+use DanBaker\ToolBox\Traits\FileSystem\NormalizePath;
 
 class FileSystemHelper
 {
-    use DeleteDirectoryTrait;
-    use IsAbsolutePathTrait;
-    use ListFilesTrait;
-    use NormalizePathTrait;
+    use DeleteDirectory;
+    use IsAbsolutePath;
+    use ListFiles;
+    use NormalizePath;
 }

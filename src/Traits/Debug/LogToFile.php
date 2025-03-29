@@ -1,8 +1,8 @@
 <?php
 
-namespace DanBaker\ToolBox\Helpers\Debug;
+namespace DanBaker\ToolBox\Traits\Debug;
 
-trait LogToFileTrait
+trait LogToFile
 {
     /**
      * Append a message to a log file with a timestamp.

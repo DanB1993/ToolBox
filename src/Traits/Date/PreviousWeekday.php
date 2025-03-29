@@ -1,25 +1,25 @@
 <?php
 
-namespace DanBaker\ToolBox\Helpers\Date;
+namespace DanBaker\ToolBox\Traits\Date;
 
-trait NextWeekdayTrait
+trait PreviousWeekday
 {
     /**
-     * Get the next weekday (Monday–Friday) after a given date.
+     * Get the previous weekday (Monday–Friday) before a given date.
      *
      * @param \DateTimeInterface|string|null $date
      * @return \DateTimeImmutable
      */
-    public static function nextWeekday(\DateTimeInterface|string|null $date = null): \DateTimeImmutable
+    public static function previousWeekday(\DateTimeInterface|string|null $date = null): \DateTimeImmutable
     {
         $date = $date instanceof \DateTimeInterface
             ? \DateTimeImmutable::createFromInterface($date)
             : new \DateTimeImmutable($date ?? 'now');
 
         do {
-            $date = $date->modify('+1 day');
+            $date = $date->modify('-1 day');
         } while (in_array((int) $date->format('N'), [6, 7], true)); // 6 = Saturday, 7 = Sunday
 
         return $date;
-    }
+    } 
 }

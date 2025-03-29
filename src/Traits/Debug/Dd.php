@@ -1,8 +1,8 @@
 <?php
 
-namespace DanBaker\ToolBox\Helpers\Debug;
+namespace DanBaker\ToolBox\Traits\Debug;
 
-trait DdTrait
+trait Dd
 {
     /**
      * Dump the variable content and terminate execution.

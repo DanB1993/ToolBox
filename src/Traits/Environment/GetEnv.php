@@ -1,8 +1,8 @@
 <?php
 
-namespace DanBaker\ToolBox\Helpers\Environment;
+namespace DanBaker\ToolBox\Traits\Environment;
 
-trait GetEnvTrait
+trait GetEnv
 {
     /**
      * Get an environment variable with optional default value and type casting.

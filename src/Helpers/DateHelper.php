@@ -14,17 +14,17 @@
 
 namespace DanBaker\ToolBox\Helpers;
 
-use DanBaker\ToolBox\Helpers\Date\HumanReadableDiffTrait;
-use DanBaker\ToolBox\Helpers\Date\IsDateTrait;
-use DanBaker\ToolBox\Helpers\Date\IsWeekendTrait;
-use DanBaker\ToolBox\Helpers\Date\NextWeekdayTrait;
-use DanBaker\ToolBox\Helpers\Date\PreviousWeekdayTrait;
+use DanBaker\ToolBox\Traits\Date\HumanReadableDiff;
+use DanBaker\ToolBox\Traits\Date\IsDate;
+use DanBaker\ToolBox\Traits\Date\IsWeekend;
+use DanBaker\ToolBox\Traits\Date\NextWeekday;
+use DanBaker\ToolBox\Traits\Date\PreviousWeekday;
 
 class DateHelper
 {
-    use HumanReadableDiffTrait;
-    use IsDateTrait;
-    use IsWeekendTrait;
-    use NextWeekdayTrait;
-    use PreviousWeekdayTrait;
+    use HumanReadableDiff;
+    use IsDate;
+    use IsWeekend;
+    use NextWeekday;
+    use PreviousWeekday;
 }

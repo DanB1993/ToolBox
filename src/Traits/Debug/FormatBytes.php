@@ -1,8 +1,8 @@
 <?php
 
-namespace DanBaker\ToolBox\Helpers\Debug;
+namespace DanBaker\ToolBox\Traits\Debug;
 
-trait FormatBytesTrait
+trait FormatBytes
 {
     /**
      * Format bytes to a human-readable string.

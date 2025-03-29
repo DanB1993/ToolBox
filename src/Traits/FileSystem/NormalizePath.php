@@ -1,8 +1,8 @@
 <?php
 
-namespace DanBaker\ToolBox\Helpers\FileSystem;
+namespace DanBaker\ToolBox\Traits\FileSystem;
 
-trait NormalizePathTrait
+trait NormalizePath
 {
     /**
      * Normalize a file path by resolving ., .., and cleaning up slashes.

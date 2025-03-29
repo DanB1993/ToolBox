@@ -1,8 +1,8 @@
 <?php
 
-namespace DanBaker\ToolBox\Helpers\Environment;
+namespace DanBaker\ToolBox\Traits\Environment;
 
-trait IsProductionTrait
+trait IsProduction
 {
     /**
      * Check if the current environment is 'production'.

@@ -1,8 +1,8 @@
 <?php
 
-namespace DanBaker\ToolBox\Helpers\FileSystem;
+namespace DanBaker\ToolBox\Traits\FileSystem;
 
-trait IsAbsolutePathTrait
+trait IsAbsolutePath
 {
     /**
      * Check if a file path is absolute.

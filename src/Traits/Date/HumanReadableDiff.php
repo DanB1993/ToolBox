@@ -1,8 +1,8 @@
 <?php
 
-namespace DanBaker\ToolBox\Helpers\Date;
+namespace DanBaker\ToolBox\Traits\Date;
 
-trait HumanReadableDiffTrait
+trait HumanReadableDiff
 {
     /**
      * Get a human-readable difference between two dates.

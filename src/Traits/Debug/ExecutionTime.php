@@ -1,8 +1,8 @@
 <?php
 
-namespace DanBaker\ToolBox\Helpers\Debug;
+namespace DanBaker\ToolBox\Traits\Debug;
 
-trait ExecutionTimeTrait
+trait ExecutionTime
 {
     /**
      * Measure execution time of a callable in milliseconds.

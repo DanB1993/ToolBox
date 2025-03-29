@@ -1,8 +1,8 @@
 <?php
 
-namespace DanBaker\ToolBox\Helpers\Date;
+namespace DanBaker\ToolBox\Traits\Date;
 
-trait IsWeekendTrait
+trait IsWeekend
 {
     /**
      * Check if a given date falls on a weekend (Saturday or Sunday).

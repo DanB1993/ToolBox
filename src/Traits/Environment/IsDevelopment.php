@@ -1,8 +1,8 @@
 <?php
 
-namespace DanBaker\ToolBox\Helpers\Environment;
+namespace DanBaker\ToolBox\Traits\Environment;
 
-trait IsDevelopmentTrait
+trait IsDevelopment
 {
     /**
      * Check if the current environment is 'development'.

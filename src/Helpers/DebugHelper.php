@@ -20,7 +20,7 @@ use DanBaker\ToolBox\Helpers\Debug\FormatBytesTrait;
 use DanBaker\ToolBox\Helpers\Debug\GetMemoryUsageTrait;
 use DanBaker\ToolBox\Helpers\Debug\LogToFileTrait;
 
-class DateHelper
+class DebugHelper
 {
     use DdTrait;
     use ExecutionTimeTrait;

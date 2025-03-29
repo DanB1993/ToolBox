@@ -19,4 +19,14 @@ class FilesystemHelperTest extends TestCase
         $this->assertFalse(FilesystemHelper::isAbsolutePath('./file.txt'));
         $this->assertFalse(FilesystemHelper::isAbsolutePath(''));
     }
+
+    /** @test */
+    public function normalizes_paths_correctly()
+    {
+        $this->assertEquals('folder/sub/file.txt', FilesystemHelper::normalizePath('folder//sub/./file.txt'));
+        $this->assertEquals('folder/file.txt', FilesystemHelper::normalizePath('folder/sub/../file.txt'));
+        $this->assertEquals('/var/www/html', FilesystemHelper::normalizePath('/var/./www/../www/html'));
+        $this->assertEquals('C:/dev/project', FilesystemHelper::normalizePath('C:\\dev\\project\\.\\'));
+        $this->assertEquals('relative/path', FilesystemHelper::normalizePath('./relative/path'));
+    }
 }

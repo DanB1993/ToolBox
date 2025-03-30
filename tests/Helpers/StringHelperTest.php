@@ -116,4 +116,13 @@ class StringHelperTest extends TestCase
         $this->assertEquals('D@*******.com', StringHelper::maskString('D@private.com', 2, 4));
         $this->assertEquals('short', StringHelper::maskString('short', 2, 3)); // returns unchanged
     }
+
+    /** @test */
+    public function generate_random_strings()
+    {
+        $this->assertEquals(16, strlen(StringHelper::randomString()));
+        $this->assertEquals(32, strlen(StringHelper::randomString(32)));
+        $this->assertMatchesRegularExpression('/^[a-zA-Z0-9]{16}$/', StringHelper::randomString(16));
+        $this->assertMatchesRegularExpression('/^[0-9]{10}$/', StringHelper::randomString(10, '0123456789'));
+    }
 }

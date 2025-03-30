@@ -15,6 +15,7 @@ namespace DanBaker\ToolBox\Helpers;
 
 use DanBaker\ToolBox\Traits\String\MaskString;
 use DanBaker\ToolBox\Traits\String\Pluralize;
+use DanBaker\ToolBox\Traits\String\RandomString;
 use DanBaker\ToolBox\Traits\String\Singularize;
 use DanBaker\ToolBox\Traits\String\Slugify;
 use DanBaker\ToolBox\Traits\String\ToCamelCase;
@@ -26,6 +27,7 @@ class StringHelper
 {
     use MaskString;
     use Pluralize;
+    use RandomString;
     use Singularize;
     use Slugify;
     use ToCamelCase;

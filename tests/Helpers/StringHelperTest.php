@@ -77,4 +77,24 @@ class StringHelperTest extends TestCase
         $this->assertEquals('DanB...', StringHelper::truncate('DanBakerToolBox', 7));
         $this->assertEquals('Dan!', StringHelper::truncate('DanBaker', 4, '!'));
     }
+
+    /** @test */
+    public function pluralize_strings()
+    {
+        $this->assertEquals('cats', StringHelper::pluralize('cat', 2));
+        $this->assertEquals('box', StringHelper::pluralize('box', 1));
+        $this->assertEquals('boxes', StringHelper::pluralize('box', 5));
+        $this->assertEquals('babies', StringHelper::pluralize('baby', 3));
+        $this->assertEquals('toys', StringHelper::pluralize('toy', 7));
+    }
+
+    /** @test */
+    public function it_singularizes_basic_english_words()
+    {
+        $this->assertEquals('cat', StringHelper::singularize('cats'));
+        $this->assertEquals('box', StringHelper::singularize('boxes'));
+        $this->assertEquals('baby', StringHelper::singularize('babies'));
+        $this->assertEquals('church', StringHelper::singularize('churches'));
+        $this->assertEquals('status', StringHelper::singularize('status')); // shouldn't change
+    }
 }

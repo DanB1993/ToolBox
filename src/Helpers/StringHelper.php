@@ -13,6 +13,8 @@
 
 namespace DanBaker\ToolBox\Helpers;
 
+use DanBaker\ToolBox\Traits\String\Pluralize;
+use DanBaker\ToolBox\Traits\String\Singularize;
 use DanBaker\ToolBox\Traits\String\ToCamelCase;
 use DanBaker\ToolBox\Traits\String\ToKebabCase;
 use DanBaker\ToolBox\Traits\String\ToSnakeCase;
@@ -20,6 +22,8 @@ use DanBaker\ToolBox\Traits\String\Truncate;
 
 class StringHelper
 {
+    use Pluralize;
+    use Singularize;
     use ToCamelCase;
     use ToKebabCase;
     use ToSnakeCase;

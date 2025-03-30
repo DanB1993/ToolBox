@@ -97,4 +97,23 @@ class StringHelperTest extends TestCase
         $this->assertEquals('church', StringHelper::singularize('churches'));
         $this->assertEquals('status', StringHelper::singularize('status')); // shouldn't change
     }
+    
+    /** @test */
+    public function slugify_strings()
+    {
+        $this->assertEquals('hello-world', StringHelper::slugify('Hello World'));
+        $this->assertEquals('dan-baker', StringHelper::slugify('Dan @ Baker!'));
+        $this->assertEquals('custom_separator', StringHelper::slugify('Custom Separator', '_'));
+        $this->assertEquals('cafe-au-lait', StringHelper::slugify('Café au lait'));
+    }
+
+    /** @test */
+    public function mask_strings()
+    {
+        $this->assertEquals('Da****er', StringHelper::maskString('DanBaker', 2, 2));
+        $this->assertEquals('***********', StringHelper::maskString('SuperSecret'));
+        $this->assertEquals('D****r', StringHelper::maskString('Danier', 1, 1));
+        $this->assertEquals('D@*******.com', StringHelper::maskString('D@private.com', 2, 4));
+        $this->assertEquals('short', StringHelper::maskString('short', 2, 3)); // returns unchanged
+    }
 }

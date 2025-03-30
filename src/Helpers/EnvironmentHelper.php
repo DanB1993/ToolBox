@@ -1,62 +1,28 @@
 <?php
+/**
+ * EnvironmentHelper
+ *
+ * A collection of reusable environment-related helper methods using traits.
+ * Includes Traits to check the current environment (development, production, testing)
+ * and retrieve environment variables.
+ *
+ * @package     DanBaker\ToolBox
+ * @author      Dan Baker
+ * @license     MIT License
+ * @link        https://github.com/danBaker/ToolBox
+ */
 
-namespace DanBaker\ToolBox\Helpers;
+ namespace DanBaker\ToolBox\Helpers;
+
+use DanBaker\ToolBox\Traits\Environment\GetEnv;
+use DanBaker\ToolBox\Traits\Environment\IsDevelopment;
+use DanBaker\ToolBox\Traits\Environment\IsProduction;
+use DanBaker\ToolBox\Traits\Environment\IsTesting;
 
 class EnvironmentHelper
 {
-    /**
-     * Get an environment variable with optional default value and type casting.
-     *
-     * @param string $key
-     * @param mixed $default
-     * @return mixed
-     */
-    public static function getEnv(string $key, mixed $default = null): mixed
-    {
-        $value = getenv($key);
-
-        if ($value === false) {
-            return $default;
-        }
-
-        $lower = strtolower($value);
-
-        return match ($lower) {
-            'true', '(true)'   => true,
-            'false', '(false)' => false,
-            'null', '(null)'   => null,
-            'empty', '(empty)' => '',
-            default            => $value,
-        };
-    }
-
-    /**
-     * Check if the current environment is 'testing'.
-     *
-     * @return bool
-     */
-    public static function isTesting(): bool
-    {
-        return getenv('APP_ENV') === 'testing';
-    }
-
-    /**
-     * Check if the current environment is 'development'.
-     *
-     * @return bool
-     */
-    public static function isDevelopment(): bool
-    {
-        return getenv('APP_ENV') === 'development';
-    }
-
-    /**
-     * Check if the current environment is 'production'.
-     *
-     * @return bool
-     */
-    public static function isProduction(): bool
-    {
-        return getenv('APP_ENV') === 'production';
-    }
+    use GetEnv;
+    use IsDevelopment;
+    use IsProduction;
+    use IsTesting;
 }

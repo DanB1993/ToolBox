@@ -1,8 +1,8 @@
 <?php
 
-namespace DanBaker\ToolBox\Utilities;
+namespace DanBaker\ToolBox\Traits\Utility;
 
-class Password
+trait GeneratePassword
 {
     /**
      * Generate a random password based on provided options.
@@ -14,7 +14,7 @@ class Password
      * @param bool $includeLowercase
      * @return string
      */
-    public static function generate(
+    public static function generatePassword(
         int $length = 12,
         bool $includeSymbols = true,
         bool $includeNumbers = true,

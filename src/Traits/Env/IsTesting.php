@@ -1,6 +1,6 @@
 <?php
 
-namespace DanBaker\ToolBox\Traits\Environment;
+namespace DanBaker\ToolBox\Traits\Env;
 
 trait IsTesting
 {

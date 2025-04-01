@@ -2,7 +2,7 @@
 
 namespace DanBaker\ToolBox\Tests\Helpers;
 
-use DanBaker\ToolBox\Helpers\ValidationHelper;
+use DanBaker\ToolBox\ToolBox;
 use PHPUnit\Framework\TestCase;
 
 class ValidationHelperTest extends TestCase
@@ -10,26 +10,26 @@ class ValidationHelperTest extends TestCase
     /** @test */
     public function correctly_validates_alphanumeric_strings()
     {
-        $this->assertTrue(ValidationHelper::isAlphaNumeric('abc123'));
-        $this->assertTrue(ValidationHelper::isAlphaNumeric('ABCDEF'));
-        $this->assertTrue(ValidationHelper::isAlphaNumeric('9876543210'));
+        $this->assertTrue(ToolBox::validate()->isAlphaNumeric('abc123'));
+        $this->assertTrue(ToolBox::validate()->isAlphaNumeric('ABCDEF'));
+        $this->assertTrue(ToolBox::validate()->isAlphaNumeric('9876543210'));
 
-        $this->assertFalse(ValidationHelper::isAlphaNumeric('abc 123'));
-        $this->assertFalse(ValidationHelper::isAlphaNumeric('hello_world'));
-        $this->assertFalse(ValidationHelper::isAlphaNumeric('!@#$%^'));
-        $this->assertFalse(ValidationHelper::isAlphaNumeric(''));
+        $this->assertFalse(ToolBox::validate()->isAlphaNumeric('abc 123'));
+        $this->assertFalse(ToolBox::validate()->isAlphaNumeric('hello_world'));
+        $this->assertFalse(ToolBox::validate()->isAlphaNumeric('!@#$%^'));
+        $this->assertFalse(ToolBox::validate()->isAlphaNumeric(''));
     }
 
     /** @test */
     public function correctly_validates_json_strings()
     {
-        $this->assertTrue(ValidationHelper::isJson('{"name":"Dan"}'));
-        $this->assertTrue(ValidationHelper::isJson('[1, 2, 3]'));
-        $this->assertTrue(ValidationHelper::isJson('true'));
-        $this->assertTrue(ValidationHelper::isJson('null'));
+        $this->assertTrue(ToolBox::validate()->isJson('{"name":"Dan"}'));
+        $this->assertTrue(ToolBox::validate()->isJson('[1, 2, 3]'));
+        $this->assertTrue(ToolBox::validate()->isJson('true'));
+        $this->assertTrue(ToolBox::validate()->isJson('null'));
 
-        $this->assertFalse(ValidationHelper::isJson(''));
-        $this->assertFalse(ValidationHelper::isJson('{name:Dan}'));
-        $this->assertFalse(ValidationHelper::isJson('Just a normal string'));
+        $this->assertFalse(ToolBox::validate()->isJson(''));
+        $this->assertFalse(ToolBox::validate()->isJson('{name:Dan}'));
+        $this->assertFalse(ToolBox::validate()->isJson('Just a normal string'));
     }
 }

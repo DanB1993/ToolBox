@@ -2,7 +2,7 @@
 
 namespace DanBaker\ToolBox\Tests\Helpers;
 
-use DanBaker\ToolBox\Helpers\DateHelper;
+use DanBaker\ToolBox\ToolBox;
 use PHPUnit\Framework\TestCase;
 
 class DateHelperTest extends TestCase
@@ -11,7 +11,7 @@ class DateHelperTest extends TestCase
     public function gets_previous_weekday_from_weekday()
     {
         $date = new \DateTimeImmutable('2025-03-25'); // Tuesday
-        $previous = DateHelper::previousWeekday($date);
+        $previous = ToolBox::date()->previousWeekday($date);
 
         $this->assertEquals('2025-03-24', $previous->format('Y-m-d')); // Monday
     }
@@ -20,7 +20,7 @@ class DateHelperTest extends TestCase
     public function skips_weekend_from_monday()
     {
         $date = new \DateTimeImmutable('2025-03-24'); // Monday
-        $previous = DateHelper::previousWeekday($date);
+        $previous = ToolBox::date()->previousWeekday($date);
 
         $this->assertEquals('2025-03-21', $previous->format('Y-m-d')); // Friday
     }
@@ -28,7 +28,7 @@ class DateHelperTest extends TestCase
     /** @test */
     public function handles_string_input()
     {
-        $previous = DateHelper::previousWeekday('2025-03-24');
+        $previous = ToolBox::date()->previousWeekday('2025-03-24');
         $this->assertEquals('2025-03-21', $previous->format('Y-m-d'));
     }
 
@@ -36,7 +36,7 @@ class DateHelperTest extends TestCase
     public function gets_next_weekday_from_weekday()
     {
         $date = new \DateTimeImmutable('2025-03-25'); // Tuesday
-        $next = DateHelper::nextWeekday($date);
+        $next = ToolBox::date()->nextWeekday($date);
 
         $this->assertEquals('2025-03-26', $next->format('Y-m-d')); // Wednesday
     }
@@ -45,7 +45,7 @@ class DateHelperTest extends TestCase
     public function skips_weekend_from_friday()
     {
         $date = new \DateTimeImmutable('2025-03-21'); // Friday
-        $next = DateHelper::nextWeekday($date);
+        $next = ToolBox::date()->nextWeekday($date);
 
         $this->assertEquals('2025-03-24', $next->format('Y-m-d')); // Monday
     }
@@ -53,16 +53,16 @@ class DateHelperTest extends TestCase
     /** @test */
     public function handles_string_input_for_next_weekday()
     {
-        $next = DateHelper::nextWeekday('2025-03-21');
+        $next = ToolBox::date()->nextWeekday('2025-03-21');
         $this->assertEquals('2025-03-24', $next->format('Y-m-d'));
     }
 
     /** @test */
     public function correctly_identifies_weekends()
     {
-        $this->assertTrue(DateHelper::isWeekend('2025-03-22')); // Saturday
-        $this->assertTrue(DateHelper::isWeekend('2025-03-23')); // Sunday
-        $this->assertFalse(DateHelper::isWeekend('2025-03-24')); // Monday
+        $this->assertTrue(ToolBox::date()->isWeekend('2025-03-22')); // Saturday
+        $this->assertTrue(ToolBox::date()->isWeekend('2025-03-23')); // Sunday
+        $this->assertFalse(ToolBox::date()->isWeekend('2025-03-24')); // Monday
     }
 
     /** @test */
@@ -70,21 +70,21 @@ class DateHelperTest extends TestCase
     {
         $now = new \DateTimeImmutable('2025-03-25 12:00:00');
 
-        $this->assertEquals('2 days ago', DateHelper::humanReadableDiff('2025-03-23 12:00:00', $now));
-        $this->assertEquals('in 3 hours', DateHelper::humanReadableDiff('2025-03-25 15:00:00', $now));
-        $this->assertEquals('just now', DateHelper::humanReadableDiff($now, $now));
+        $this->assertEquals('2 days ago', ToolBox::date()->humanReadableDiff('2025-03-23 12:00:00', $now));
+        $this->assertEquals('in 3 hours', ToolBox::date()->humanReadableDiff('2025-03-25 15:00:00', $now));
+        $this->assertEquals('just now', ToolBox::date()->humanReadableDiff($now, $now));
     }
 
     /** @test */
     public function validates_date_strings_and_objects_correctly()
     {
-        $this->assertTrue(DateHelper::isDate('2025-04-01'));
-        $this->assertTrue(DateHelper::isDate(new \DateTimeImmutable()));
-        $this->assertTrue(DateHelper::isDate('March 10, 2025 5:00 PM'));
+        $this->assertTrue(ToolBox::date()->isDate('2025-04-01'));
+        $this->assertTrue(ToolBox::date()->isDate(new \DateTimeImmutable()));
+        $this->assertTrue(ToolBox::date()->isDate('March 10, 2025 5:00 PM'));
 
-        $this->assertFalse(DateHelper::isDate('not-a-date'));
-        $this->assertFalse(DateHelper::isDate(''));
-        $this->assertFalse(DateHelper::isDate(null));
-        $this->assertFalse(DateHelper::isDate(12345));
+        $this->assertFalse(ToolBox::date()->isDate('not-a-date'));
+        $this->assertFalse(ToolBox::date()->isDate(''));
+        $this->assertFalse(ToolBox::date()->isDate(null));
+        $this->assertFalse(ToolBox::date()->isDate(12345));
     }
 }

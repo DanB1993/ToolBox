@@ -77,4 +77,52 @@ class StringHelperTest extends TestCase
         $this->assertEquals('DanB...', StringHelper::truncate('DanBakerToolBox', 7));
         $this->assertEquals('Dan!', StringHelper::truncate('DanBaker', 4, '!'));
     }
+
+    /** @test */
+    public function pluralize_strings()
+    {
+        $this->assertEquals('cats', StringHelper::pluralize('cat', 2));
+        $this->assertEquals('box', StringHelper::pluralize('box', 1));
+        $this->assertEquals('boxes', StringHelper::pluralize('box', 5));
+        $this->assertEquals('babies', StringHelper::pluralize('baby', 3));
+        $this->assertEquals('toys', StringHelper::pluralize('toy', 7));
+    }
+
+    /** @test */
+    public function it_singularizes_basic_english_words()
+    {
+        $this->assertEquals('cat', StringHelper::singularize('cats'));
+        $this->assertEquals('box', StringHelper::singularize('boxes'));
+        $this->assertEquals('baby', StringHelper::singularize('babies'));
+        $this->assertEquals('church', StringHelper::singularize('churches'));
+        $this->assertEquals('status', StringHelper::singularize('status')); // shouldn't change
+    }
+    
+    /** @test */
+    public function slugify_strings()
+    {
+        $this->assertEquals('hello-world', StringHelper::slugify('Hello World'));
+        $this->assertEquals('dan-baker', StringHelper::slugify('Dan @ Baker!'));
+        $this->assertEquals('custom_separator', StringHelper::slugify('Custom Separator', '_'));
+        $this->assertEquals('cafe-au-lait', StringHelper::slugify('Café au lait'));
+    }
+
+    /** @test */
+    public function mask_strings()
+    {
+        $this->assertEquals('Da****er', StringHelper::maskString('DanBaker', 2, 2));
+        $this->assertEquals('***********', StringHelper::maskString('SuperSecret'));
+        $this->assertEquals('D****r', StringHelper::maskString('Danier', 1, 1));
+        $this->assertEquals('D@*******.com', StringHelper::maskString('D@private.com', 2, 4));
+        $this->assertEquals('short', StringHelper::maskString('short', 2, 3)); // returns unchanged
+    }
+
+    /** @test */
+    public function generate_random_strings()
+    {
+        $this->assertEquals(16, strlen(StringHelper::randomString()));
+        $this->assertEquals(32, strlen(StringHelper::randomString(32)));
+        $this->assertMatchesRegularExpression('/^[a-zA-Z0-9]{16}$/', StringHelper::randomString(16));
+        $this->assertMatchesRegularExpression('/^[0-9]{10}$/', StringHelper::randomString(10, '0123456789'));
+    }
 }

@@ -1,6 +1,6 @@
 {
     "name": "danbaker/toolbox",
-    "description": "A PHP toolbox providing useful helpers and utilities.",
+    "description": "A modern PHP toolbox offering reusable utility traits and helper methods for string manipulation, date handling, array operations, and more. Ideal for Laravel and general-purpose PHP projects.",
     "type": "library",
     "license": "MIT",
     "autoload": {

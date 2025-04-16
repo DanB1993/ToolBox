@@ -1,6 +1,6 @@
 <?php
 
-namespace DanBaker\ToolBox\Traits\Validation;
+namespace DanBaker\ToolBox\Traits\Validate;
 
 trait IsJson
 {

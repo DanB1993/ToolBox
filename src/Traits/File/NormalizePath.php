@@ -1,6 +1,6 @@
 <?php
 
-namespace DanBaker\ToolBox\Traits\FileSystem;
+namespace DanBaker\ToolBox\Traits\File;
 
 trait NormalizePath
 {

@@ -2,7 +2,7 @@
 
 namespace DanBaker\ToolBox\Tests\Helpers;
 
-use DanBaker\ToolBox\Helpers\EnvironmentHelper;
+use DanBaker\ToolBox\ToolBox;
 use PHPUnit\Framework\TestCase;
 
 class EnvironmentHelperTest extends TestCase
@@ -11,26 +11,26 @@ class EnvironmentHelperTest extends TestCase
     public function returns_env_value_or_default()
     {
         putenv('TOOLBOX_EXAMPLE=true');
-        $this->assertTrue(EnvironmentHelper::getEnv('TOOLBOX_EXAMPLE'));
+        $this->assertTrue(ToolBox::env()->getEnv('TOOLBOX_EXAMPLE'));
 
         putenv('TOOLBOX_EXAMPLE=(null)');
-        $this->assertNull(EnvironmentHelper::getEnv('TOOLBOX_EXAMPLE'));
+        $this->assertNull(ToolBox::env()->getEnv('TOOLBOX_EXAMPLE'));
 
         putenv('TOOLBOX_EXAMPLE=(empty)');
-        $this->assertSame('', EnvironmentHelper::getEnv('TOOLBOX_EXAMPLE'));
+        $this->assertSame('', ToolBox::env()->getEnv('TOOLBOX_EXAMPLE'));
 
         putenv('TOOLBOX_MISSING'); // Unset
-        $this->assertEquals('fallback', EnvironmentHelper::getEnv('TOOLBOX_MISSING', 'fallback'));
+        $this->assertEquals('fallback', ToolBox::env()->getEnv('TOOLBOX_MISSING', 'fallback'));
     }
 
     /** @test */
     public function detects_testing_environment_correctly()
     {
         putenv('APP_ENV=testing');
-        $this->assertTrue(EnvironmentHelper::isTesting());
+        $this->assertTrue(ToolBox::env()->isTesting());
 
         putenv('APP_ENV=production');
-        $this->assertFalse(EnvironmentHelper::isTesting());
+        $this->assertFalse(ToolBox::env()->isTesting());
 
         putenv('APP_ENV'); // reset
     }
@@ -39,10 +39,10 @@ class EnvironmentHelperTest extends TestCase
     public function detects_development_environment_correctly()
     {
         putenv('APP_ENV=development');
-        $this->assertTrue(EnvironmentHelper::isDevelopment());
+        $this->assertTrue(ToolBox::env()->isDevelopment());
 
         putenv('APP_ENV=production');
-        $this->assertFalse(EnvironmentHelper::isDevelopment());
+        $this->assertFalse(ToolBox::env()->isDevelopment());
 
         putenv('APP_ENV'); // reset
     }
@@ -51,10 +51,10 @@ class EnvironmentHelperTest extends TestCase
     public function detects_production_environment_correctly()
     {
         putenv('APP_ENV=production');
-        $this->assertTrue(EnvironmentHelper::isProduction());
+        $this->assertTrue(ToolBox::env()->isProduction());
 
         putenv('APP_ENV=development');
-        $this->assertFalse(EnvironmentHelper::isProduction());
+        $this->assertFalse(ToolBox::env()->isProduction());
 
         putenv('APP_ENV'); // reset
     }

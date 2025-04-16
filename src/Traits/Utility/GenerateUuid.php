@@ -1,8 +1,8 @@
 <?php
 
-namespace DanBaker\ToolBox\Utilities;
+namespace DanBaker\ToolBox\Traits\Utility;
 
-class Uuid
+trait GenerateUuid
 {
     /**
      * Generate a UUID v4.

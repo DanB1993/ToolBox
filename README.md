@@ -2,7 +2,7 @@
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-A lightweight and dependency-free Composer package providing helpful PHP utilities and developer tools for everyday tasks. Currently, the ToolBox consists of **46** utilities & helpers.
+A modern and dependency-free PHP toolbox offering a facade-based API for reusable utilities across strings, dates, files, validation, and more. Ideal for Laravel and general-purpose PHP projects.
 
 ---
 

@@ -7,17 +7,22 @@ trait IsJson
     /**
      * Check if a string is valid JSON.
      *
-     * @param string $value
-     * @return bool
+     * This method uses strict JSON parsing and will return false on empty strings or syntax errors.
+     *
+     * @param string $value The JSON string to validate.
+     * @return bool True if valid JSON, false otherwise.
      */
     public static function isJson(string $value): bool
     {
-        if (!is_string($value) || trim($value) === '') {
+        if (trim($value) === '') {
             return false;
         }
 
-        json_decode($value);
-
-        return json_last_error() === JSON_ERROR_NONE;
+        try {
+            json_decode($value, true, 512, JSON_THROW_ON_ERROR);
+            return true;
+        } catch (\JsonException $e) {
+            return false;
+        }
     }
 }

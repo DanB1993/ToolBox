@@ -14,6 +14,7 @@ class HttpClientTools
     protected string $setErrors = '';
     protected array $setInfo = [];
     protected string $setUrl = '';
+    protected int $timeout = 15;
 
     protected function buildHeaders(array $headers): array
     {
@@ -47,6 +48,18 @@ class HttpClientTools
     public function url(string $url): self
     {
         $this->setUrl = $url;
+        return $this;
+    }
+
+    /**
+     * Set the request timeout in seconds.
+     *
+     * @param int $seconds
+     * @return self
+     */
+    public function timeout(int $seconds): self
+    {
+        $this->timeout = $seconds;
         return $this;
     }
 
@@ -181,7 +194,7 @@ class HttpClientTools
             CURLOPT_CUSTOMREQUEST => $method,
             CURLOPT_HTTPHEADER => $this->buildHeaders($this->headers),
             CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_TIMEOUT => 15,
+            CURLOPT_TIMEOUT => $this->timeout,
         ];
 
         if (in_array($method, ['POST', 'PUT']) && $data !== null) {

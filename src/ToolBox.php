@@ -6,7 +6,14 @@ class ToolBox
 {
     public static function __callStatic(string $name, array $arguments)
     {
-        $class = 'DanBaker\\ToolBox\\Services\\' . ucfirst($name) . 'Tools';
+        $toolsName = ucfirst($name) . 'Tools';
+        $class = 'DanBaker\\ToolBox\\Services\\' . $toolsName;
+
+        if (class_exists($class)) {
+            return new $class(...$arguments);
+        }
+
+        $class = 'DanBaker\\ToolBox\\Clients\\' . $toolsName;
 
         if (class_exists($class)) {
             return new $class(...$arguments);

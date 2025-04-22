@@ -65,13 +65,14 @@ trait GenerateUuid
         $nstr = hex2bin($nhex) . $name;
         $hash = sha1($nstr);
 
-        return vsprintf('%s%s-%s-%s-%s-%s%s%s', [
+        return sprintf(
+            '%s-%s-%s-%s-%s',
             substr($hash, 0, 8),
             substr($hash, 8, 4),
-            sprintf('%04x', (hexdec(substr($hash, 12, 4)) & 0x0fff) | 0x5000),
-            sprintf('%04x', (hexdec(substr($hash, 16, 4)) & 0x3fff) | 0x8000),
+            substr($hash, 12, 4),
+            substr($hash, 16, 4),
             substr($hash, 20, 12)
-        ]);
+        );
     }
 
     /**

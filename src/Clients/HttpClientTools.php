@@ -69,7 +69,7 @@ class HttpClientTools
      * @param bool $raw Return raw string or decoded JSON array.
      * @return array|string
      */
-    public function response(bool $raw = false): array|string
+    public function response(bool $raw = false): array|string|null
     {
         return $raw ? $this->setResponse : json_decode($this->setResponse, true);
     }

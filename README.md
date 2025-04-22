@@ -2,7 +2,7 @@
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-A modern and dependency-free PHP toolbox offering a facade-based API for reusable utilities across strings, dates, files, validation, and more. Ideal for Laravel and general-purpose PHP projects.
+A modern PHP toolbox featuring a facade-driven API for accessing reusable utilities and helpers—covering strings, dates, files, validation, security, and beyond. Designed for Laravel and general-purpose PHP projects.
 
 ---
 
